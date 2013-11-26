@@ -1,0 +1,21 @@
+.navbar.navbar-default.navbar-fixed-top(data-ng-controller="NavCtrl" role="navigation")
+  .navbar-header
+    button.navbar-toggle(type="button", data-toggle="collapse", data-target=".navbar-ex1-collapse")
+      span.sr-only Toggle navigation
+      span.icon-bar
+      span.icon-bar
+      span.icon-bar
+    a.navbar-brand(href="#") DPReddit-Angular
+  .collapse.navbar-collapse.navbar-ex1-collapse
+    ul.nav.navbar-nav
+    ul.nav.navbar-nav.navbar-right
+      li(data-access-level='accessLevels.anon', active-nav)
+        a(href='/login') Log in
+      li(data-access-level='accessLevels.anon', active-nav)
+        a(href='/register') Register
+      li(data-access-level='accessLevels.user')
+        a(href="", data-ng-click="logout()")
+          | Log out {{ user.username }} &nbsp;
+          span.glyphicon.glyphicon-off
+      li
+        a(href="help") Hilfe

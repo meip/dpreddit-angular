@@ -1,0 +1,35 @@
+div.row
+  div.col-sm-12
+    div.panel.panel-default
+      div.panel-body
+        div.panel-heading
+          h4 Register
+          form.form-horizontal(ng-submit="register()", name="registerForm")
+            div.form-group
+              label.control-label.col-sm-2(for="username") Username
+              div.col-sm-6
+                input.form-control.col-sm-6(type="text", data-ng-model="username", placeholder="Username", name="username", required, data-ng-minlength="1", data-ng-maxlength="20", autofocus)
+            div.form-group
+              label.control-label.col-sm-2(for="password") Password
+              div.col-sm-6
+                input.form-control.col-sm-6(type="password", data-ng-model="password", placeholder="Password", name="password", required, data-ng-minlength="5", data-ng-maxlength="60")
+            div.form-group
+              label.control-label.col-sm-2(for="passwordrepeat") Password repeat
+              div.col-sm-6
+                input.form-control.col-sm-6(type="password", data-ng-model="passwordrepeat", placeholder="Password repeat", name="passwordrepeat", required)
+
+            div.form-group
+              .col-sm-offset-2.col-sm-10
+                input.btn.btn-warning(type="reset", value="Reset!", ng-click="registerForm.$setPristine()")
+                button.btn.btn-primary.col-sm-offset-5(type="submit", data-ng-disabled="registerForm.$invalid") Submit
+
+            .alert.alert-error(ng-show="registerForm.$invalid && registerForm.$dirty")
+              strong Please correct the following errors:
+              ul
+                li(ng-show="registerForm.username.$error.required") Username is required
+                li(ng-show="registerForm.username.$error.minlength") Username has to be at least 1 character long
+                li(ng-show="registerForm.username.$error.maxlength") Username has to be at most 20 character long
+                li(ng-show="registerForm.password.$error.required") Password is required
+                li(ng-show="registerForm.password.$error.minlength") Password must be at least 5 characters long
+                li(ng-show="registerForm.password.$error.maxlength") Password must be at most 60 characters long
+                li(ng-show="registerForm.passwordrepeat.$error.required") Password repeat is required

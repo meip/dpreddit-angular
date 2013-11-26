@@ -1,0 +1,27 @@
+{
+  "name": "DPReddit-Angular",
+  "version": "0.0.1",
+  "dependencies": {
+    "express": "*",
+    "jade": "*",
+    "passport": "*",
+    "passport-local": "*",
+    "underscore": "*",
+    "validator": "~1.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/meip/dpreddit-angular"
+  },
+  "subdomain": "dpreddit-angular",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.2.x"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1"
+  }
+}

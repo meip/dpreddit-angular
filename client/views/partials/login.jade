@@ -1,0 +1,23 @@
+div.row
+  div.col-sm-12
+    div.panel.panel-default
+      div.panel-body
+        div.panel-heading
+          h4  Log in
+          form.form-horizontal(ng-submit="login()", name="loginForm")
+            div.form-group
+              label.control-label.col-sm-2(for="username") Username
+              div.col-sm-6
+                input.form-control.col-sm-6(type="text", data-ng-model="username", placeholder="Username", name="username", required, autofocus)
+            div.form-group
+              label.control-label.col-sm-2(for="password") Password
+              div.col-sm-6
+                input.form-control.col-sm-6(type="password", data-ng-model="password", placeholder="Password", name="password", required)
+            div.checkbox
+              div.col-sm-6.col-sm-offset-2
+                label(for="rememberme")
+                  input(type="checkbox", data-ng-model="rememberme", name="rememberme")
+                  | Remember me
+            div.form-group
+              div.col-sm-6
+                button.btn.btn-primary(type="submit", data-ng-disabled="loginForm.$invalid") Log in
