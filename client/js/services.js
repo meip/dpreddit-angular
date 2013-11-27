@@ -74,6 +74,9 @@ angular.module('dpreddit-angular')
         },
         getbyid: function (linkentryid, success, error) {
           $http.get('/linkentry/' + linkentryid).success(success).error(error);
+        },
+        vote: function(linkentryid, value, success, error) {
+          $http.get('/votelinkentry/' + linkentryid + '/' + value).success(success).error(error);
         }
       };
     });

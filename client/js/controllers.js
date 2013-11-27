@@ -44,15 +44,31 @@ angular.module('dpreddit-angular')
 angular.module('dpreddit-angular')
     .controller('HomeCtrl',
         ['$rootScope', '$scope', 'LinkEntry', function ($rootScope, $scope, LinkEntry) {
+          function getAllLinkEntries() {
+            $scope.loading = true;
+            LinkEntry.getAll(function (res) {
+              $scope.linkEntries = res;
+              $scope.loading = false;
+            }, function (err) {
+              $rootScope.error = "Failed to fetch LinkEntry.getAll.";
+              $scope.loading = false;
+            });
+          };
 
-          $scope.loading = true;
-          LinkEntry.getAll(function (res) {
-            $scope.linkEntries = res;
-            $scope.loading = false;
-          }, function (err) {
-            $rootScope.error = "Failed to fetch LinkEntry.getAll.";
-            $scope.loading = false;
-          });
+          $scope.vote = function(linkentryid, value) {
+            LinkEntry.vote(
+                linkentryid,
+                value,
+                function() {
+                  getAllLinkEntries();
+                },
+                function(err) {
+                  $rootScope.error = err;
+                }
+            );
+          };
+
+          getAllLinkEntries();
 
         }]);
 

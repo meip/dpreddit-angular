@@ -25,5 +25,13 @@ module.exports = {
 
       res.json(200, { "newlinksuccess": true });
     });
+  },
+
+  vote: function(req, res, next) {
+    LinkEntry.vote(parseInt(req.params.linkentryid), parseInt(req.params.value), req.user, function (err, linkentry) {
+      if (err) return res.send(500);
+
+      res.json(200, { "votesuccess": true });
+    });
   }
 };

@@ -65,6 +65,12 @@ var routes = [
     middleware: [LinkEntryCtrl.findbyid],
     accessLevel: accessLevels.user
   },
+  {
+    path: '/votelinkentry/:linkentryid/:value',
+    httpMethod: 'GET',
+    middleware: [LinkEntryCtrl.vote],
+    accessLevel: accessLevels.user
+  },
 
   //Comments
   {

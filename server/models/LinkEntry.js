@@ -1,6 +1,7 @@
 var LinkEntry,
     _ = require('underscore'),
-    check = require('validator').check;
+    check = require('validator').check,
+    vote = require('../util/vote');
 
 var entries = [
   {
@@ -9,7 +10,9 @@ var entries = [
     linkurl: "http://www.google.com",
     user: '',
     date: new Date(),
-    comments: []
+    comments: [],
+    votes: [],
+    votevalue: 0
   },
   {
     id: 2,
@@ -17,7 +20,9 @@ var entries = [
     linkurl: "http://www.swisscom.com",
     user: '',
     date: new Date(),
-    comments: []
+    comments: [],
+    votes: [],
+    votevalue: 0
   }
 ];
 
@@ -35,7 +40,9 @@ module.exports = {
       linkurl: linkurl,
       user: user,
       date: date,
-      comments: []
+      comments: [],
+      votes: [],
+      votevalue: 0
     };
     entries.push(entry);
     callback(null, entry);
@@ -58,6 +65,13 @@ module.exports = {
       return entry.id === id
     });
     return entry.comments.push(comment);
+  },
+
+  vote: function (id, value, user, callback) {
+    var linkentry = _.find(entries, function (linkentry) {
+      return linkentry.id === id
+    });
+    vote.vote(linkentry, value, user, callback);
   },
 
   validate: function (entry) {
