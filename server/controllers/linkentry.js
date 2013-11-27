@@ -3,7 +3,9 @@ var _ = require('underscore'),
 
 module.exports = {
   index: function (req, res) {
-    var linkentries = LinkEntry.findAll();
+    var linkentries =  _.sortBy(LinkEntry.findAll(), function(entry) {
+      return entry.votevalue
+    }).reverse();
     res.json(linkentries);
   },
 
