@@ -71,6 +71,22 @@ angular.module('dpreddit-angular')
           $http.post('/addnewlinkentry', newlinkentry).success(function (res) {
             success();
           }).error(error);
+        },
+        getbyid: function (linkentryid, success, error) {
+          $http.get('/linkentry/' + linkentryid).success(success).error(error);
+        }
+      };
+    });
+angular.module('dpreddit-angular')
+    .factory('Comment', function ($http) {
+      return {
+        getAll: function (success, error) {
+          $http.get('/comments').success(success).error(error);
+        },
+        addcomment: function (newcomment, success, error) {
+          $http.post('/addcomment', newcomment).success(function (res) {
+            success();
+          }).error(error);
         }
       };
     });

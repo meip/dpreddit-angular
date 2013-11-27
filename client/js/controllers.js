@@ -82,16 +82,52 @@ angular.module('dpreddit-angular')
 
           $scope.addnewlinkentry = function () {
             LinkEntry.addnewlinkentry({
-              linkentrytitle: $scope.newlinkentrytitle,
-              linkentryurl: $scope.newlinkentryurl
-            },
-            function () {
-              $location.path('/');
-            },
-            function (err) {
-              $rootScope.error = err;
-            });
+                  linkentrytitle: $scope.newlinkentrytitle,
+                  linkentryurl: $scope.newlinkentryurl
+                },
+                function () {
+                  $location.path('/');
+                },
+                function (err) {
+                  $rootScope.error = err;
+                });
           };
+        }]);
+
+angular.module('dpreddit-angular')
+    .controller('LinkDetailCtrl',
+        ['$rootScope', '$scope', '$routeParams', '$location', 'LinkEntry', 'Comment', function ($rootScope, $scope, $routeParams, $location, LinkEntry, Comment) {
+          function getLinkEntry() {
+            LinkEntry.getbyid($routeParams.linkentryid, function (res) {
+              $scope.linkEntry = res;
+              $scope.loading = false;
+            }, function (err) {
+              $rootScope.error = "Failed to fetch LinkEntry.getbyid.";
+              $scope.loading = false;
+            });
+          }
+          $scope.addnewcomment = function() {
+            Comment.addcomment({
+                commentext: $scope.newCommentText,
+                linkEntryId: $routeParams.linkentryid
+              },
+              function () {
+                $scope.loading = false;
+                $scope.resetForm();
+                getLinkEntry();
+              },
+              function (err) {
+                $rootScope.error = err;
+              });
+          }
+
+          $scope.resetForm = function() {
+            $scope.newcommentForm.$setPristine();
+            $scope.newCommentText = "";
+          }
+          $scope.loading = true;
+          getLinkEntry();
+
         }]);
 
 angular.module('dpreddit-angular')

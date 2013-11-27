@@ -1,16 +1,19 @@
 h1 DPReddit-Angular Links
 ul.media-list.list-group(data-ng-hide="loading")
   li.media.list-group-item(data-ng-repeat="linkEntry in linkEntries")
-    div.pull-left
-      span.glyphicon.glyphicon-chevron-up
-      div.clearfix
-      span.glyphicon.glyphicon-chevron-down
-    div.media-body
+    div.pull-left.col-xs-1
+      div(style="text-align: center")
+        span.glyphicon.glyphicon-chevron-up
+        div.clearfix
+        span 1
+        div.clearfix
+        span.glyphicon.glyphicon-chevron-down
+    div.media-body.col-xs-10
       a(href='{{linkEntry.linkurl}}')
-        h3 {{ linkEntry.title }}
-      span(am-time-ago="linkEntry.date") 
-      span &nbsp; by {{ linkEntry.user.username }}
+        h3(style="margin-top: 0") {{ linkEntry.title }}
+      span(am-time-ago="linkEntry.date")
+      span by {{ linkEntry.user.username }}
       div
-        a(href='foo.html') &nbsp;
+        a(href='linkdetail/{{linkEntry.id}}') &nbsp;
           span.glyphicon.glyphicon-comment
           | &nbsp;Comments

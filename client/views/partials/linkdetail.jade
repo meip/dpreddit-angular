@@ -1,0 +1,46 @@
+div.row
+  div.col-sm-12
+    div.panel.panel-default
+      div.panel-body
+        div.media-body
+          a(href='{{linkEntry.linkurl}}')
+            h3 {{ linkEntry.title }}
+          span(am-time-ago="linkEntry.date")
+          span  by {{ linkEntry.user.username }}
+          ul.media-list(data-ng-hide="loading")
+            li(style="margin-top: 20px;")
+              div.panel.panel-default
+                div.panel-body
+                  div.panel-heading
+                    h4 Add a new comment
+                form.form-horizontal(ng-submit="addnewcomment()", name="newcommentForm")
+                  div.form-group
+                    label.col-xs-1.control-label(for="commentText")
+                      span.glyphicon.glyphicon-comment
+                    div.col-xs-10
+                      textarea.form-control(type="text", data-ng-model="newCommentText", placeholder="Your comment here", name="commentText", required, data-ng-minlength="5",data-ng-maxlength="1000", autofocus)
+                  div.form-group
+                    .col-sm-offset-1.col-xs-10
+                      input.btn.btn-warning.col-xs-1(type="reset", value="Reset!", ng-click="resetForm()")
+                      button.btn.btn-primary.col-xs-offset-10.col-xs-1(type="submit", data-ng-disabled="newcommentForm.$invalid") Submit
+
+                  .alert.alert-error(ng-show="newcommentForm.$invalid && newcommentForm.$dirty")
+                    strong Please correct the following errors:
+                    ul
+                      li(ng-show="newcommentForm.newCommentText.$error.required") Your comment is required
+                      li(ng-show="newcommentForm.newCommentText.$error.minlength") Your comment has to be at least 5 character long
+                      li(ng-show="newcommentForm.newCommentText.$error.maxlength") Your comment has to be at most 1000 character long
+
+            li.media.list-group-item(data-ng-repeat="comment in linkEntry.comments")
+              div.pull-left.col-xs-1
+                div(style="text-align: center")
+                  span.glyphicon.glyphicon-chevron-up
+                  div.clearfix
+                  span 1
+                  div.clearfix
+                  span.glyphicon.glyphicon-chevron-down
+              div.media-body.col-xs-10
+                span {{comment.commentext}}
+                div.clearfix
+                span(am-time-ago="comment.date")
+                span  by {{ comment.user.username }}
