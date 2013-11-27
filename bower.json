@@ -1,0 +1,14 @@
+{
+  "name": "dpreddit-angular",
+  "version": "0.0.1",
+  "dependencies": {
+    "underscore": "~1.5.2",
+    "angular": "~1.2.0",
+    "angular-cookies": "~1.2.0",
+    "angular-sanitize": "~1.2.0",
+    "angular-route": "~1.2.0",
+    "angular-moment": "~0.5.2"
+  },
+  "devDependencies": {
+  }
+}
