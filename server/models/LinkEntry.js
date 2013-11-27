@@ -8,14 +8,16 @@ var entries = [
     title: "An awesome link",
     linkurl: "http://www.google.com",
     user: '',
-    date: new Date()
+    date: new Date(),
+    comments: []
   },
   {
     id: 2,
     title: "Another awesome link",
     linkurl: "http://www.swisscom.com",
     user: '',
-    date: new Date()
+    date: new Date(),
+    comments: []
   }
 ];
 
@@ -32,7 +34,8 @@ module.exports = {
       title: title,
       linkurl: linkurl,
       user: user,
-      date: date
+      date: date,
+      comments: []
     };
     entries.push(entry);
     callback(null, entry);
@@ -48,6 +51,13 @@ module.exports = {
     return _.clone(_.find(entries, function (entry) {
       return entry.id === id
     }));
+  },
+
+  addComment: function(id, comment) {
+    var entry = _.find(entries, function (entry) {
+      return entry.id === id
+    });
+    return entry.comments.push(comment);
   },
 
   validate: function (entry) {

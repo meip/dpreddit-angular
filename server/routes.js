@@ -4,6 +4,7 @@ var _ = require('underscore'),
     AuthCtrl = require('./controllers/auth'),
     UserCtrl = require('./controllers/user'),
     LinkEntryCtrl = require('./controllers/linkentry'),
+    CommentCtrl = require('./controllers/comment'),
     User = require('./models/User.js'),
     userRoles = require('../client/js/routingConfig').userRoles,
     accessLevels = require('../client/js/routingConfig').accessLevels;
@@ -49,12 +50,33 @@ var routes = [
   {
     path: '/addnewlinkentry',
     httpMethod: 'POST',
-    middleware: [LinkEntryCtrl.add]
+    middleware: [LinkEntryCtrl.add],
+    accessLevel: accessLevels.user
   },
   {
     path: '/linkentries',
     httpMethod: 'GET',
     middleware: [LinkEntryCtrl.index],
+    accessLevel: accessLevels.user
+  },
+  {
+    path: '/linkentry/:linkentryid',
+    httpMethod: 'GET',
+    middleware: [LinkEntryCtrl.findbyid],
+    accessLevel: accessLevels.user
+  },
+
+  //Comments
+  {
+    path: '/comments',
+    httpMethod: 'GET',
+    middleware: [CommentCtrl.index],
+    accessLevel: accessLevels.user
+  },
+  {
+    path: '/addcomment',
+    httpMethod: 'POST',
+    middleware: [CommentCtrl.add],
     accessLevel: accessLevels.user
   },
 
