@@ -1,6 +1,7 @@
 var Comment,
     _ = require('underscore'),
-    check = require('validator').check;
+    check = require('validator').check,
+    vote = require('../util/vote');
 
 var comments = [
   {
@@ -8,14 +9,18 @@ var comments = [
     commentext: "wow how cool is that",
     linkEntryId: 1,
     user: '',
-    date: new Date()
+    date: new Date(),
+    votes: [],
+    votevalue: 0
   },
   {
     id: 2,
     commentext: "thats really awesome!",
     linkEntryId: 1,
     user: '',
-    date: new Date()
+    date: new Date(),
+    votes: [],
+    votevalue: 0
   }
 ];
 
@@ -32,7 +37,9 @@ module.exports = {
       commentext: commentext,
       linkEntryId: linkEntryId,
       user: user,
-      date: date
+      date: date,
+      votes: [],
+      votevalue: 0
     };
     comments.push(comment);
     callback(null, comment);
@@ -48,6 +55,13 @@ module.exports = {
     return _.clone(_.find(comments, function (comment) {
       return comment.id === id
     }));
+  },
+
+  vote: function (id, value, user, callback) {
+    var comment = _.find(comments, function (comment) {
+      return comment.id === id
+    });
+    vote.vote(comment, value, user, callback);
   },
 
   validate: function (comment) {

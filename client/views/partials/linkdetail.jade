@@ -34,11 +34,13 @@ div.row
             li.media.list-group-item(data-ng-repeat="comment in linkEntry.comments")
               div.pull-left.col-xs-1
                 div(style="text-align: center")
-                  span.glyphicon.glyphicon-chevron-up
+                  a(ng-click="vote(comment.id, 1)")
+                    span.glyphicon.glyphicon-chevron-up
                   div.clearfix
-                  span 1
+                  span {{comment.votevalue}}
                   div.clearfix
-                  span.glyphicon.glyphicon-chevron-down
+                  a(ng-click="vote(comment.id, -1)")
+                    span.glyphicon.glyphicon-chevron-down
               div.media-body.col-xs-10
                 span {{comment.commentext}}
                 div.clearfix

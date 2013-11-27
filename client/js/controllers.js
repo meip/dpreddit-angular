@@ -98,6 +98,7 @@ angular.module('dpreddit-angular')
     .controller('LinkDetailCtrl',
         ['$rootScope', '$scope', '$routeParams', '$location', 'LinkEntry', 'Comment', function ($rootScope, $scope, $routeParams, $location, LinkEntry, Comment) {
           function getLinkEntry() {
+            $scope.loading = true;
             LinkEntry.getbyid($routeParams.linkentryid, function (res) {
               $scope.linkEntry = res;
               $scope.loading = false;
@@ -112,7 +113,6 @@ angular.module('dpreddit-angular')
                 linkEntryId: $routeParams.linkentryid
               },
               function () {
-                $scope.loading = false;
                 $scope.resetForm();
                 getLinkEntry();
               },
@@ -123,9 +123,21 @@ angular.module('dpreddit-angular')
 
           $scope.resetForm = function() {
             $scope.newcommentForm.$setPristine();
-            $scope.newCommentText = "";
+            $scope.newCommentText = '';
           }
-          $scope.loading = true;
+
+          $scope.vote = function(commentid, value) {
+            Comment.vote(
+              commentid,
+              value,
+              function() {
+                getLinkEntry();
+              },
+              function(err) {
+                $rootScope.error = err;
+              }
+            );
+          }
           getLinkEntry();
 
         }]);

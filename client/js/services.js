@@ -87,6 +87,9 @@ angular.module('dpreddit-angular')
           $http.post('/addcomment', newcomment).success(function (res) {
             success();
           }).error(error);
+        },
+        vote: function(commentid, value, success, error) {
+          $http.get('/votecomment/' + commentid + '/' + value).success(success).error(error);
         }
       };
     });

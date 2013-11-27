@@ -74,6 +74,12 @@ var routes = [
     accessLevel: accessLevels.user
   },
   {
+    path: '/votecomment/:commentid/:value',
+    httpMethod: 'GET',
+    middleware: [CommentCtrl.vote],
+    accessLevel: accessLevels.user
+  },
+  {
     path: '/addcomment',
     httpMethod: 'POST',
     middleware: [CommentCtrl.add],
