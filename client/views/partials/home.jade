@@ -1,2 +1,15 @@
-h1 Hello
-p This view is visible to logged in users.
+h1 DPReddit-Angular Links
+ul.media-list.list-group(data-ng-hide="loading")
+  li.media.list-group-item(data-ng-repeat="linkEntry in linkEntries")
+    div.pull-left
+      span.glyphicon.glyphicon-chevron-up
+      div.clearfix
+      span.glyphicon.glyphicon-chevron-down
+    div.media-body
+      a(href='{{linkEntry.linkurl}}')
+        h3 {{ linkEntry.title }}
+      span 1 minute ago
+      div
+        a(href='foo.html') &nbsp;
+          span.glyphicon.glyphicon-comment
+          | &nbsp;Comments

@@ -60,3 +60,17 @@ angular.module('dpreddit-angular')
         }
       };
     });
+
+angular.module('dpreddit-angular')
+    .factory('LinkEntry', function ($http) {
+      return {
+        getAll: function (success, error) {
+          $http.get('/linkentries').success(success).error(error);
+        },
+        addnewlinkentry: function (newlinkentry, success, error) {
+          $http.post('/addnewlinkentry', newlinkentry).success(function (res) {
+            success();
+          }).error(error);
+        }
+      };
+    });

@@ -1,0 +1,28 @@
+div.row
+  div.col-sm-12
+    div.panel.panel-default
+      div.panel-body
+        div.panel-heading
+          h4 Submit a new link
+          form.form-horizontal(ng-submit="addnewlinkentry()", name="newlinkentryForm")
+            div.form-group
+              label.control-label.col-sm-2(for="linktitle") Title
+              div.col-sm-6
+                input.form-control.col-sm-6(type="text", data-ng-model="newlinkentrytitle", placeholder="Check this out", name="linktitle", required, data-ng-maxlength="100", autofocus)
+            div.form-group
+              label.control-label.col-sm-2(for="linkurl") Link URL
+              div.col-sm-6
+                input.form-control.col-sm-6(type="text", data-ng-model="newlinkentryurl", placeholder="http://whatever.com", name="linkurl", required, data-ng-maxlength="255")
+            div.form-group
+              .col-sm-offset-2.col-sm-10
+                input.btn.btn-warning(type="reset", value="Reset!", ng-click="newlinkentryForm.$setPristine()")
+                button.btn.btn-primary.col-sm-offset-5(type="submit", data-ng-disabled="newlinkentryForm.$invalid") Submit
+
+            .alert.alert-error(ng-show="newlinkentryForm.$invalid && newlinkentryForm.$dirty")
+              strong Please correct the following errors:
+              ul
+                li(ng-show="registerForm.newlinkentrytitle.$error.required") Link Title is required
+                li(ng-show="registerForm.newlinkentrytitle.$error.minlength") Link Title has to be at least 1 character long
+                li(ng-show="registerForm.newlinkentrytitle.$error.maxlength") Link Title has to be at most 100 character long
+                li(ng-show="registerForm.newlinkentryurl.$error.required") Link URL is required
+                li(ng-show="registerForm.newlinkentryurl.$error.maxlength") Link URL has to be at most 255 character long

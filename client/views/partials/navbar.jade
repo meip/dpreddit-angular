@@ -8,6 +8,10 @@
     a.navbar-brand(href="#") DPReddit-Angular
   .collapse.navbar-collapse.navbar-ex1-collapse
     ul.nav.navbar-nav
+      li(data-access-level='accessLevels.user')
+        a(href='/newlinkentry')
+          | Submit link &nbsp;
+          span.glyphicon.glyphicon-link
     ul.nav.navbar-nav.navbar-right
       li(data-access-level='accessLevels.anon', active-nav)
         a(href='/login') Log in

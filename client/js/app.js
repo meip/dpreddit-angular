@@ -30,6 +30,12 @@ angular.module('dpreddit-angular', ['ngCookies', 'ngRoute'])
             controller: 'PrivateCtrl',
             access: access.user
           });
+      $routeProvider.when('/newlinkentry',
+          {
+            templateUrl: 'newlinkentry',
+            controller: 'NewLinkEntryCtrl',
+            access: access.user
+          });
       $routeProvider.when('/404',
           {
             templateUrl: '404',

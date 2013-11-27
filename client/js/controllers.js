@@ -43,22 +43,29 @@ angular.module('dpreddit-angular')
 
 angular.module('dpreddit-angular')
     .controller('HomeCtrl',
-        ['$rootScope', function ($rootScope) {
+        ['$rootScope', '$scope', 'LinkEntry', function ($rootScope, $scope, LinkEntry) {
+
+          $scope.loading = true;
+          LinkEntry.getAll(function (res) {
+            $scope.linkEntries = res;
+            $scope.loading = false;
+          }, function (err) {
+            $rootScope.error = "Failed to fetch LinkEntry.getAll.";
+            $scope.loading = false;
+          });
 
         }]);
 
 angular.module('dpreddit-angular')
     .controller('RegisterCtrl',
         ['$rootScope', '$scope', '$location', 'Auth', function ($rootScope, $scope, $location, Auth) {
-          $scope.role = Auth.userRoles.user;
-          $scope.userRoles = Auth.userRoles;
 
           $scope.register = function () {
             Auth.register({
                   username: $scope.username,
                   password: $scope.password,
                   passwordrepeat: $scope.passwordrepeat,
-                  role: $scope.role
+                  role: Auth.userRoles.user
                 },
                 function () {
                   $location.path('/');
@@ -66,6 +73,24 @@ angular.module('dpreddit-angular')
                 function (err) {
                   $rootScope.error = err;
                 });
+          };
+        }]);
+
+angular.module('dpreddit-angular')
+    .controller('NewLinkEntryCtrl',
+        ['$rootScope', '$scope', '$location', 'LinkEntry', function ($rootScope, $scope, $location, LinkEntry) {
+
+          $scope.addnewlinkentry = function () {
+            LinkEntry.addnewlinkentry({
+              linkentrytitle: $scope.newlinkentrytitle,
+              linkentryurl: $scope.newlinkentryurl
+            },
+            function () {
+              $location.path('/');
+            },
+            function (err) {
+              $rootScope.error = err;
+            });
           };
         }]);
 
