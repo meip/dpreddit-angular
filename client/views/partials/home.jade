@@ -8,7 +8,8 @@ ul.media-list.list-group(data-ng-hide="loading")
     div.media-body
       a(href='{{linkEntry.linkurl}}')
         h3 {{ linkEntry.title }}
-      span 1 minute ago
+      span(am-time-ago="linkEntry.date") 
+      span &nbsp; by {{ linkEntry.user.username }}
       div
         a(href='foo.html') &nbsp;
           span.glyphicon.glyphicon-comment

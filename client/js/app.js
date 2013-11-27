@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('dpreddit-angular', ['ngCookies', 'ngRoute'])
+angular.module('dpreddit-angular', ['ngCookies', 'ngRoute', 'angularMoment'])
 
     .config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider) {
 
