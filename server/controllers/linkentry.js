@@ -11,6 +11,9 @@ module.exports = {
 
   findbyid: function(req, res) {
     var linkentry = LinkEntry.findById(parseInt(req.params.linkentryid));
+    linkentry.comments =  _.sortBy(linkentry.comments , function(comment) {
+      return comment.votevalue
+    }).reverse();
     res.json(linkentry);
   },
 
