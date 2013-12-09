@@ -2,6 +2,9 @@
 
 Miniprojekt für das Modul Internettechnologien an der Hochschule für Technik Rapperswil (HSR) im Herbstsemester 2013 (HS13).
 
+## Live Demo
+[Heroku Deployment](http://dpreddit-angular.herokuapp.com/)
+
 ## Getting Started
 
 ### Installing Bower
