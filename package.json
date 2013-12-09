@@ -7,7 +7,8 @@
     "passport": "*",
     "passport-local": "*",
     "underscore": "*",
-    "validator": "~1.1.1"
+    "validator": "~1.1.1",
+    "bower": "~1.2.7"
   },
   "repository": {
     "type": "git",
@@ -15,7 +16,8 @@
   },
   "subdomain": "dpreddit-angular",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "postinstall": "./node_modules/bower/bin/bower install"
   },
   "engines": {
     "node": "0.8.x",
